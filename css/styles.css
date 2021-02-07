@@ -1,0 +1,19 @@
+html, body {
+    padding: 5px;
+}
+
+#task-table {
+    font-family: calibri, arial;
+    border-collapse: collapse;
+    width: 400px;
+}
+
+#task-table td {
+    text-align: center;
+    padding: 8px;
+    border: 1px solid black;   
+}
+
+#task-table tr:nth-child(odd){background-color: #a8c7f7;}
+
+#task-table tr:nth-child(even){background-color: #dbf7ff;}

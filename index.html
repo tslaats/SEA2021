@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript DCR Graphs Engine</title>
+  <meta name="description" content="JavaScript DCR Graphs Engine">
+  <meta name="author" content="Tijs Slaats">
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+</head>
+<body>  
+  <script src="js/lodash.js"></script>  
+  <script src="js/jQuery.js"></script>
+  <script src="js/dynamic_table.js"></script>
+  <script src="js/dcr.js"></script>
+  <script src="js/dcr_parser.js"></script>  
+  <script src="js/GUI.js"></script>  
+
+  <table id="task-table"></table>  
+  <p id="accepting"></p>
+  <br />  
+
+  <button id="btn-time">Time+1</button>&nbsp;
+  <br />
+
+  <textarea id="ta-dcr" rows="20" cols="150">
+A(0,0,0)        
+B(0,1,1)        
+A -->* B
+B *--> A
+C -->% A
+D -->+ A    
+D -->* B
+A --><> (B, D)    
+  </textarea>
+  <p id="parse-error"></p>
+
+</body>
+</html>
