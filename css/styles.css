@@ -17,3 +17,16 @@ html, body {
 #task-table tr:nth-child(odd){background-color: #a8c7f7;}
 
 #task-table tr:nth-child(even){background-color: #dbf7ff;}
+
+#btn-front-page {
+    background-color: #a8c7f7;
+    border: none;
+    color: black;
+    padding: 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
