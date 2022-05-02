@@ -8,6 +8,29 @@
   <link rel="stylesheet" href="css/styles.css?v=1.0">
 </head>
 <body>  
+  <a href="#help-create"><button id="btn-help">Help</button></a>
+  <div id="help-create" class="overlay">
+    <div class="popup">
+      <h2>Help for creating question set</h2>
+      <a class="close" href="#">&times;</a>
+      <div class="content">
+        <p>Fill out all the fields. Note: To make multiple entries in a
+        field, write each entry (activity or trace) on a new line.</p>
+        <p>The "Required" field refers to traces that must be 
+        allowed for the student's answer to be correct, e.g. 
+        <span style="font-family:Calibri, Arial, sans-serif">"B"</span>. 
+        </p>
+        <p>The "Prohibited" field refers to traces that are NOT allowed in a 
+        correct answer. For example, if you want a correct answer to be 
+        <span style="font-family:Calibri, Arial, sans-serif">"A-->*B"</span>, 
+        then you could enter <span style="font-family:Calibri, Arial, sans-serif">"A"</span> 
+        as prohibited.</p>
+        <p>Add a new question if desired.</p>
+        <p>Remember to save when you are finished!</p>
+      </div>
+    </div>
+  </div>
+
   <script src="js/lodash.js"></script>  
   <script src="js/jQuery.js"></script>
   <script src="js/dynamic_table.js"></script>
