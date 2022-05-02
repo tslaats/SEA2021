@@ -1,38 +1,273 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
   <title>JavaScript DCR Graphs Engine</title>
+  <meta charset="utf-8">
   <meta name="description" content="JavaScript DCR Graphs Engine">
   <meta name="author" content="Tijs Slaats">
-  <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: "Lato", sans-serif;
+      margin: 8px 6px 8px 6px;
+      background-color: #e0e2e4;
+      overflow-y: scroll;
+    }
+
+    main {
+      padding: 5px;
+      margin: 8px 6px 8px 6px;
+      width: 80%;
+    }
+
+    main>h1,
+    p,
+    .browser {
+      margin: 10px;
+      padding: 20px;
+    }
+
+    .header {
+      padding: 10px 16px;
+      background: #478778;
+      color: black;
+      text-align: center;
+      border: 2px solid black;
+      border-radius: 10px;
+    }
+    .sidenav {
+      height: 50%;
+      width: 250px;
+      position: fixed;
+      z-index: 1;
+      top: 10;
+      right: 0;
+      background-color: #c8c3cc;
+      overflow-x: hidden;
+      transition: 0.5s;
+      margin: 8px 12px 8px 6px;
+      border: 2px solid black;
+      border-radius: 10px;
+
+    }
+
+    .sidenav a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: black;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidenav a:hover {
+      color: #f1f1f1;
+    }
+
+    .footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: #563f46;
+      color: white;
+      text-align: center;
+      border: 2px solid black;
+      border-radius: 5px;
+      padding: 8px 8px 8px 32px;
+    }
+
+    .browser {
+      background: #F7F7F7;
+      width: 95%;
+      border: 2px solid black;
+      border-radius: 10px;
+    }
+
+    .browser>h2,
+    p {
+      margin: 4px;
+      font-size: 90%;
+    }
+
+
+    @media screen and (max-height: 450px) {
+      .sidenav {
+        padding-top: 15px;
+      }
+
+      .sidenav a {
+        font-size: 18px;
+      }
+    }
+  </style>
 </head>
-<body>  
-  <script src="js/lodash.js"></script>  
+
+<body>
+  <script src="js/lodash.js"></script>
   <script src="js/jQuery.js"></script>
   <script src="js/dynamic_table.js"></script>
   <script src="js/dcr.js"></script>
-  <script src="js/dcr_parser.js"></script>  
-  <script src="js/GUI.js"></script>  
+  <script src="js/dcr_parser.js"></script>
+  <script src="js/GUI.js"></script>
 
-  <table id="task-table"></table>  
-  <p id="accepting"></p>
-  <br />  
 
-  <button id="btn-time">Time+1</button>&nbsp;
-  <br />
 
-  <textarea id="ta-dcr" rows="20" cols="150">
-A(0,0,0)        
-B(0,1,1)        
-A -->* B
-B *--> A
-C -->% A
-D -->+ A    
-D -->* B
-A --><> (B, D)    
-  </textarea>
-  <p id="parse-error"></p>
+  <div class="header">
+    <h2>Create a new dcr learning exercise!</h2>
+  </div>
+
+
+  <div id="mySidenav" class="sidenav">
+
+    <a href="#">Help!</a>
+    <a href="#">Add question!</a>
+    <a href="#">Save as file!</a>
+
+  </div>
+
+  <main>
+    <article class="browser">
+      <h2>What is the question for the exercise?!</h2>
+
+      <input type="text" id="question" name="question" placeholder="Question">
+    </article>
+
+    <article class="browser">
+      <h2>Which symbol represents what activity?!</h2>
+      <form class="form-inline">
+        <div id="activity">
+          <input type="text" id="sym" name="sym" size="20" placeholder="Symbol">
+
+          <input type="text" name="act" name="act" size="20" placeholder="Activity">
+        </div>
+        <div class="controls">
+          <a href="#" id="add_more_fields">Add More</a>
+          <a href="#" id="remove_fields">Remove Field</a>
+        </div>
+
+      </form>
+    </article>
+
+    <article class="browser">
+      <h2>Add required and prohibited scenarios for the exercise!</h2>
+      <form class="form-inline">
+        <div id="scenarios">
+          <input type="text" name="dcr" id="dcr" size="20" placeholder="DCR">
+
+          <input type="text" name="req" id="req" size="20" placeholder="Required/prohibited">
+
+          <input type="text" name="hints" id="hints" size="20" placeholder="Hints">
+
+        </div>
+        <div class="controls">
+          <a href="#" id="more_fields">Add More</a>
+          <a href="#" id="less_fields">Remove Field</a>
+        </div>
+
+      </form>
+    </article>
+
+  </main>
+
+
+
+  <div class="footer">
+    <p>This is a open source learning tool for learning about DCR-graphs!</p>
+  </div>
 
 </body>
+
 </html>
+
+
+<script>
+
+
+
+  var activity = document.getElementById('activity');
+
+  var add_more_fields = document.getElementById('add_more_fields');
+  var remove_fields = document.getElementById('remove_fields');
+
+  add_more_fields.onclick = function () {
+    var newField = document.createElement('input');
+    newField.setAttribute('type', 'text');
+    newField.setAttribute('name', 'sym');
+    newField.setAttribute('id', 'sym');
+    newField.setAttribute('size', 20);
+    newField.setAttribute('placeholder', 'Symbol');
+
+    var newField1 = document.createElement('input');
+    newField1.setAttribute('type', 'text');
+    newField1.setAttribute('name', 'act');
+    newField1.setAttribute('id', 'act');
+    newField1.setAttribute('size', 20);
+    newField1.setAttribute('placeholder', 'Activity');
+
+    var br = document.createElement("br");
+
+    activity.appendChild(br);
+    activity.appendChild(newField);
+    activity.appendChild(newField1);
+
+  }
+
+  remove_fields.onclick = function () {
+    var input_tags = activity.getElementsByTagName('input');
+    if (input_tags.length > 2) {
+      activity.removeChild(input_tags[(input_tags.length) - 1]);
+      activity.removeChild(input_tags[(input_tags.length) - 1]);
+    }
+  }
+
+  var scenarios = document.getElementById('scenarios');
+
+  var more_fields = document.getElementById('more_fields');
+  var less_fields = document.getElementById('less_fields');
+
+  more_fields.onclick = function () {
+    var newField = document.createElement('input');
+    newField.setAttribute('type', 'text');
+    newField.setAttribute('name', 'dcr');
+    newField.setAttribute('id', 'dcr');
+    newField.setAttribute('size', 20);
+    newField.setAttribute('placeholder', 'DCR');
+
+    var newField1 = document.createElement('input');
+    newField1.setAttribute('type', 'text');
+    newField1.setAttribute('name', 'req');
+    newField1.setAttribute('id', 'req');
+    newField1.setAttribute('size', 20);
+    newField1.setAttribute('placeholder', 'Required/prohibited');
+
+    var newField2 = document.createElement('input');
+    newField2.setAttribute('type', 'text');
+    newField2.setAttribute('name', 'hints');
+    newField2.setAttribute('id', 'hints');
+    newField2.setAttribute('size', 20);
+    newField2.setAttribute('placeholder', 'Hints');
+
+    var br = document.createElement("br");
+
+    scenarios.appendChild(br);
+    scenarios.appendChild(newField);
+    scenarios.appendChild(newField1);
+    scenarios.appendChild(newField2);
+
+  }
+
+  less_fields.onclick = function () {
+    var input_tags = scenarios.getElementsByTagName('input');
+    if (input_tags.length > 3) {
+      scenarios.removeChild(input_tags[(input_tags.length) - 1]);
+      scenarios.removeChild(input_tags[(input_tags.length) - 1]);
+      scenarios.removeChild(input_tags[(input_tags.length) - 1]);
+
+    }
+  }
+
+
+
+</script>
