@@ -1,4 +1,12 @@
-const fileSystem = require("browserify-fs")
+const fileSystem = require("fs")
+const Exercise = require("../Entity/exercise");
+
+console.log(" Writing into an file ");
+const exercise = new Exercise("question", "required", "forbidden");
+const exercise_set = new Training_Set();
+exercise_set.add(exercise);
+exportEx(exercise_set);
+console.log(" Finished ");
 
 function check_solution() {
 
