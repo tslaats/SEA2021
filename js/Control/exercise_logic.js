@@ -1,12 +1,11 @@
 const fileSystem = require("fs")
 const Exercise = require("../Entity/exercise");
+const Training_Set = require("../")
 
-console.log(" Writing into an file ");
-const exercise = new Exercise("question", "required", "forbidden");
-const exercise_set = new Training_Set();
-exercise_set.add(exercise);
-exportEx(exercise_set);
-console.log(" Finished ");
+let btn = document.getElementById("btn");
+  btn.addEventListener('click', event => {
+    test();
+  });
 
 function check_solution() {
 
@@ -46,4 +45,13 @@ function exportEx(exercise_set, name = "exercises") {
           console.log('JSON data is written to the file successfully')
         }
     })
+}
+
+function test() {
+  console.log(" Writing into an file ");
+  const exercise = new Exercise("question", "required", "forbidden");
+  const exercise_set = new Training_Set();
+  exercise_set.add(exercise);
+  exportEx(exercise_set);
+  console.log(" Finished ");
 }
