@@ -39,7 +39,6 @@ function importEx(path) {
 
 function exportEx(exercise_set, name = "exercises") {
     let data = JSON.stringify(exercise_set)
-
     let path = "./" + name + ".json"
 
     fileSystem.writeFile(path, data, err=>{
