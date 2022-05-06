@@ -1,4 +1,4 @@
-class Training_Set {
+export default class Training_Set {
     constructor () {
         this.exercises = [];
     }

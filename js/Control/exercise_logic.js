@@ -1,18 +1,22 @@
-const fileSystem = require("fs")
-const Exercise = require("../Entity/exercise");
-const Training_Set = require("../")
+import * as fileSystem from "fs";
+import Exercise from "../Entity/exercise";
+import Training_Set from "../Entity/training_set";
 
-let btn = document.getElementById("btn");
-  btn.addEventListener('click', event => {
-    test();
-  });
+console.log(" Writing into an file ");
+const exercise = new Exercise("question", "required", "forbidden");
+const exercise_set = new Training_Set();
+exercise_set.add(exercise);
+exportEx(exercise_set);
+console.log(" Finished ");
 
 function check_solution() {
 
 }
+
 function next_exercise() {
 
 }
+
 function add_exercise() {
 
 }
@@ -34,9 +38,9 @@ function importEx(path) {
 }
 
 function exportEx(exercise_set, name = "exercises") {
-    data = JSON.stringify(exercise_set)
+    let data = JSON.stringify(exercise_set)
 
-    path = "./" + name + ".json"
+    let path = "./" + name + ".json"
 
     fileSystem.writeFile(path, data, err=>{
         if(err){
@@ -45,13 +49,4 @@ function exportEx(exercise_set, name = "exercises") {
           console.log('JSON data is written to the file successfully')
         }
     })
-}
-
-function test() {
-  console.log(" Writing into an file ");
-  const exercise = new Exercise("question", "required", "forbidden");
-  const exercise_set = new Training_Set();
-  exercise_set.add(exercise);
-  exportEx(exercise_set);
-  console.log(" Finished ");
 }
