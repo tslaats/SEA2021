@@ -101,6 +101,53 @@
         font-size: 18px;
       }
     }
+        
+    .overlay {
+      position: fixed;
+      z-index: 1; /* makes on top */
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.7);
+      transition: opacity 200ms;
+      visibility: hidden;
+      opacity: 0;
+    }
+    .overlay:target {
+      visibility: visible;
+      opacity: 1;
+    }
+    .popup {
+      margin: 70px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 5px;
+      width: 65%;
+      position: relative;
+      transition: all 5s ease-in-out;
+    }
+    .popup h2 {
+      margin-top: 0;
+      color: #333;
+    }
+    .popup .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      transition: all 200ms;
+      font-size: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      color: #333;
+    }
+    .popup .close:hover {
+      color: #a8c7f7;
+    }
+    .popup .content {
+      max-height: 65%;
+      overflow: auto;
+    }
   </style>
 </head>
 
@@ -121,7 +168,7 @@
 
   <div id="mySidenav" class="sidenav">
 
-    <a href="#">Help!</a>
+    <a href="#help-create">Help!</a>
     <a href="#">Add question!</a>
     <a href="#">Save as file!</a>
 
@@ -154,7 +201,7 @@
       <h2>Add required and prohibited scenarios for the exercise!</h2>
       <form class="form-inline">
         <div id="scenarios">
-          <input type="text" name="dcr" id="dcr" size="20" placeholder="DCR">
+          <input type="text" name="dcr" id="dcr" size="20" placeholder="Scenario">
 
           <input type="text" name="req" id="req" size="20" placeholder="Required/prohibited">
 
@@ -175,6 +222,35 @@
 
   <div class="footer">
     <p>This is a open source learning tool for learning about DCR-graphs!</p>
+  </div>
+
+  <div id="help-create" class="overlay">
+    <div class="popup">
+      <h2>Help for creating exercise set</h2>
+      <a class="close" href="#">&times;</a>
+      <div class="content">
+        <p>Fill out the fields in this form to create a question and the 
+          conditions that the student's answer must fulfil to be correct. </p>
+        <p>At the top, you should write a question in natural language and the
+          corresponding DCR representation, e.g. "When you get up in the morning 
+          you must eat your breakfast." and "A-->*B". </p>
+        <p>In the middle, you should define the symbol that you are using to represent
+          each activity in the current exercise. So for example, you could use "A" as a 
+          symbol to refer to the activity "get up in the morning". You can add more 
+          symbols by clicking on "Add More". </p>
+        <p>At the bottom, you should fill out the conditions that a correct answer must
+          fulfil. Select "Required" for scenarios that must be allowed in a correct answer. 
+          Select "Prohibited" if the scenario is NOT allowed in a correct answer. 
+          A single scenario may consist of one or more activities, separated by commas. For 
+          example, the scenario "A,B,B" means you do activity A once then activity B twice. 
+          If you want, you can add hints to show to the students if they get 
+          stuck. You can add more scenarios by clicking on "Add More". </p>
+        <p>Click on "Add question" from the right panel to add a new question if desired.
+          You can also navigate through your questions by clicking on "Previous" and "Next".
+          To delete a question, just delete all text in the question field. </p>
+        <p>Remember to click on "Save as file" when you are finished!</p>
+      </div>
+    </div>
   </div>
 
 </body>
