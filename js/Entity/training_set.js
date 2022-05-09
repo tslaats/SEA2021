@@ -8,4 +8,7 @@ export default class Training_Set {
     remove(index) {
         this.exercises.splice(index, index+1);
     }
+    get(index) {
+        return this.exercises[index]
+    }
 }

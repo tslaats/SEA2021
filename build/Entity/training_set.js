@@ -28,6 +28,11 @@ var Training_Set = /*#__PURE__*/function () {
     value: function remove(index) {
       this.exercises.splice(index, index + 1);
     }
+  }, {
+    key: "get",
+    value: function get(index) {
+      return this.exercises[index];
+    }
   }]);
 
   return Training_Set;
