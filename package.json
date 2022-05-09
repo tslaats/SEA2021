@@ -1,0 +1,28 @@
+{
+  "name": "sea2022",
+  "version": "1.0.0",
+  "description": "Source code for a simple Javascript DCR Graphs modelling and simulation tool, for use in the 2021 Software Engineering and Architecture course at KU.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel js -d build"
+  },
+  "dependencies": {
+    "browserify-fs": "^1.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.17.10",
+    "@babel/preset-env": "^7.17.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SKroell/SEA2022.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SKroell/SEA2022/issues"
+  },
+  "homepage": "https://github.com/SKroell/SEA2022#readme"
+}
