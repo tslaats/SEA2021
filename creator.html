@@ -176,9 +176,9 @@
 
   <main>
     <article class="browser">
-      <h2>What is the question for the exercise?!</h2>
+      <h2>What is the Description for the exercise?!</h2>
 
-      <input type="text" id="question" name="question" size="65" placeholder="Question">
+      <input type="text" id="question" name="question" size="65" placeholder="Description">
     </article>
 
     <article class="browser">
@@ -198,12 +198,15 @@
     </article>
 
     <article class="browser">
-      <h2>Add required and prohibited scenarios for the exercise!</h2>
+      <h2>Add allowed and forbidden scenarios for the exercise!</h2>
       <form class="form-inline">
         <div id="scenarios">
           <input type="text" name="dcr" id="dcr" size="20" placeholder="Scenario">
 
-          <input type="text" name="req" id="req" size="20" placeholder="Required/prohibited">
+          <select name="req" id="req">
+            <option value="Allowed">Allowed</option>
+            <option value="Forbidden">Forbidden</option>
+          </select> 
 
           <input type="text" name="hints" id="hints" size="20" placeholder="Hints">
 
@@ -239,8 +242,8 @@
           symbol to refer to the activity "get up in the morning". You can add more 
           symbols by clicking on "Add More". </p>
         <p>At the bottom, you should fill out the conditions that a correct answer must
-          fulfil. Select "Required" for scenarios that must be allowed in a correct answer. 
-          Select "Prohibited" if the scenario is NOT allowed in a correct answer. 
+          fulfil. Select "Allowed" for scenarios that must be allowed in a correct answer. 
+          Select "Forbidden" if the scenario is NOT allowed in a correct answer. 
           A single scenario may consist of one or more activities, separated by commas. For 
           example, the scenario "A,B,B" means you do activity A once then activity B twice. 
           If you want, you can add hints to show to the students if they get 
@@ -315,13 +318,11 @@
     newField.setAttribute('size', 20);
     newField.setAttribute('placeholder', 'Scenario');
 
-    var newField1 = document.createElement('input');
-    newField1.setAttribute('class', 'form-inline');
-    newField1.setAttribute('type', 'text');
+    var newField1 = document.createElement('select');
     newField1.setAttribute('name', 'req');
     newField1.setAttribute('id', 'req');
-    newField1.setAttribute('size', 20);
-    newField1.setAttribute('placeholder', 'Required/prohibited');
+    newField1.options[0] = new Option('Allowed', 'Allowed');
+    newField1.options[1] = new Option('Forbidden', 'Forbidden');
 
     var newField2 = document.createElement('input');
     newField2.setAttribute('type', 'text');
@@ -345,10 +346,11 @@
 
   less_fields.onclick = function () {
     var input_tags = scenarios.getElementsByTagName('input') 
+    var select_tags = scenarios.getElementsByTagName('select') 
     var br_tags = scenarios.getElementsByTagName('br');
     if (input_tags.length > 3) {
       scenarios.removeChild(input_tags[(input_tags.length) - 1]);
-      scenarios.removeChild(input_tags[(input_tags.length) - 1]);
+      scenarios.removeChild(select_tags[(select_tags.length) - 1]);
       scenarios.removeChild(input_tags[(input_tags.length) - 1]);
       scenarios.removeChild(br_tags[(br_tags.length) - 1]);
     }
