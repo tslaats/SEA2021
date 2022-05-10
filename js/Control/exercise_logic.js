@@ -1,4 +1,4 @@
-import * as fileSystem from "fs";
+const fileSystem = require("fs");
 import Exercise from "../Entity/exercise";
 import Training_Set from "../Entity/training_set";
 
@@ -12,7 +12,9 @@ console.log(" Finished ");
 console.log(" About read the file ")
 const imported = importEx("exercises.json");
 console.log(" Read the file ");
-console.log("question: " + imported);
+const exs = imported.exercises;
+const ex = exs[0];
+console.log("question: " + ex.question);
 
 function check_solution() {
 
