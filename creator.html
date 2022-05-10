@@ -10,7 +10,7 @@
   <style>
     body {
       font-family: "Lato", sans-serif;
-      margin: 8px 6px 8px 6px;
+      margin: 8px 6px 52px 6px;
       background-color: #e0e2e4;
       overflow-y: scroll;
     }
@@ -178,7 +178,7 @@
     <article class="browser">
       <h2>What is the question for the exercise?!</h2>
 
-      <input type="text" id="question" name="question" placeholder="Question">
+      <input type="text" id="question" name="question" size="65" placeholder="Question">
     </article>
 
     <article class="browser">
@@ -187,7 +187,7 @@
         <div id="activity">
           <input type="text" id="sym" name="sym" size="20" placeholder="Symbol">
 
-          <input type="text" name="act" name="act" size="20" placeholder="Activity">
+          <input type="text" id="act" name="act" size="20" placeholder="Activity">
         </div>
         <div class="controls">
           <a href="#" id="add_more_fields">Add More</a>
@@ -283,18 +283,22 @@
     newField1.setAttribute('placeholder', 'Activity');
 
     var br = document.createElement("br");
+    var ws = document.createTextNode(' ');
 
     activity.appendChild(br);
     activity.appendChild(newField);
+    activity.appendChild(ws);
     activity.appendChild(newField1);
 
   }
 
   remove_fields.onclick = function () {
     var input_tags = activity.getElementsByTagName('input');
+    var br_tags = activity.getElementsByTagName('br');
     if (input_tags.length > 2) {
       activity.removeChild(input_tags[(input_tags.length) - 1]);
       activity.removeChild(input_tags[(input_tags.length) - 1]);
+      activity.removeChild(br_tags[(br_tags.length) - 1]);
     }
   }
 
@@ -309,9 +313,10 @@
     newField.setAttribute('name', 'dcr');
     newField.setAttribute('id', 'dcr');
     newField.setAttribute('size', 20);
-    newField.setAttribute('placeholder', 'DCR');
+    newField.setAttribute('placeholder', 'Scenario');
 
     var newField1 = document.createElement('input');
+    newField1.setAttribute('class', 'form-inline');
     newField1.setAttribute('type', 'text');
     newField1.setAttribute('name', 'req');
     newField1.setAttribute('id', 'req');
@@ -326,21 +331,26 @@
     newField2.setAttribute('placeholder', 'Hints');
 
     var br = document.createElement("br");
+    var ws1 = document.createTextNode(' ');
+    var ws2 = document.createTextNode(' ');
 
     scenarios.appendChild(br);
     scenarios.appendChild(newField);
+    scenarios.appendChild(ws1);
     scenarios.appendChild(newField1);
+    scenarios.appendChild(ws2);
     scenarios.appendChild(newField2);
 
   }
 
   less_fields.onclick = function () {
-    var input_tags = scenarios.getElementsByTagName('input');
+    var input_tags = scenarios.getElementsByTagName('input') 
+    var br_tags = scenarios.getElementsByTagName('br');
     if (input_tags.length > 3) {
       scenarios.removeChild(input_tags[(input_tags.length) - 1]);
       scenarios.removeChild(input_tags[(input_tags.length) - 1]);
       scenarios.removeChild(input_tags[(input_tags.length) - 1]);
-
+      scenarios.removeChild(br_tags[(br_tags.length) - 1]);
     }
   }
 
