@@ -152,15 +152,7 @@
 </head>
 
 <body>
-  <script src="js/lodash.js"></script>
-  <script src="js/jQuery.js"></script>
-  <script src="js/dynamic_table.js"></script>
-  <script src="js/dcr.js"></script>
-  <script src="js/dcr_parser.js"></script>
-  <script src="js/GUI.js"></script>
-
-
-
+ 
   <div class="header">
     <h2>Create a new dcr learning exercise!</h2>
   </div>
@@ -169,7 +161,7 @@
   <div id="mySidenav" class="sidenav">
 
     <a href="#help-create">Help!</a>
-    <a href="#">Add question!</a>
+    <a id="add_exercise">Add question!</a>
     <a href="#">Save as file!</a>
 
   </div>
@@ -181,13 +173,15 @@
       <input type="text" id="question" name="question" placeholder="Question">
     </article>
 
+    
+
     <article class="browser">
       <h2>Which symbol represents what activity?!</h2>
       <form class="form-inline">
         <div id="activity">
-          <input type="text" id="sym" name="sym" size="20" placeholder="Symbol">
+          <input type="text" name="sym[]" size="20" value="" placeholder="Symbol">
 
-          <input type="text" name="act" name="act" size="20" placeholder="Activity">
+          <input type="text" name="act[]" size="20" placeholder="Activity">
         </div>
         <div class="controls">
           <a href="#" id="add_more_fields">Add More</a>
@@ -201,11 +195,11 @@
       <h2>Add required and prohibited scenarios for the exercise!</h2>
       <form class="form-inline">
         <div id="scenarios">
-          <input type="text" name="dcr" id="dcr" size="20" placeholder="Scenario">
+          <input type="text" name="dcr[]" size="20" placeholder="Scenario">
 
-          <input type="text" name="req" id="req" size="20" placeholder="Required/prohibited">
+          <input type="text" name="req[]" size="20" placeholder="Required/prohibited">
 
-          <input type="text" name="hints" id="hints" size="20" placeholder="Hints">
+          <input type="text" name="hints[]"  size="20" placeholder="Hints">
 
         </div>
         <div class="controls">
@@ -255,12 +249,20 @@
 
 </body>
 
+<script src="js/lodash.js"></script>
+<script src="js/jQuery.js"></script>
+<script src="js/dynamic_table.js"></script>
+<script src="js/dcr.js"></script>
+<script src="js/dcr_parser.js"></script>
+<script src="js/GUI.js"></script>
+<script type="module" src="js/Control/exercise_logic.js"></script>
+
+
+
 </html>
 
 
 <script>
-
-
 
   var activity = document.getElementById('activity');
 
@@ -270,15 +272,13 @@
   add_more_fields.onclick = function () {
     var newField = document.createElement('input');
     newField.setAttribute('type', 'text');
-    newField.setAttribute('name', 'sym');
-    newField.setAttribute('id', 'sym');
+    newField.setAttribute('name', 'sym[]');
     newField.setAttribute('size', 20);
     newField.setAttribute('placeholder', 'Symbol');
 
     var newField1 = document.createElement('input');
     newField1.setAttribute('type', 'text');
-    newField1.setAttribute('name', 'act');
-    newField1.setAttribute('id', 'act');
+    newField1.setAttribute('name', 'act[]');
     newField1.setAttribute('size', 20);
     newField1.setAttribute('placeholder', 'Activity');
 
@@ -306,22 +306,19 @@
   more_fields.onclick = function () {
     var newField = document.createElement('input');
     newField.setAttribute('type', 'text');
-    newField.setAttribute('name', 'dcr');
-    newField.setAttribute('id', 'dcr');
+    newField.setAttribute('name', 'dcr[]');
     newField.setAttribute('size', 20);
     newField.setAttribute('placeholder', 'DCR');
 
     var newField1 = document.createElement('input');
     newField1.setAttribute('type', 'text');
-    newField1.setAttribute('name', 'req');
-    newField1.setAttribute('id', 'req');
+    newField1.setAttribute('name', 'req[]');
     newField1.setAttribute('size', 20);
     newField1.setAttribute('placeholder', 'Required/prohibited');
 
     var newField2 = document.createElement('input');
     newField2.setAttribute('type', 'text');
-    newField2.setAttribute('name', 'hints');
-    newField2.setAttribute('id', 'hints');
+    newField2.setAttribute('name', 'hints[]');
     newField2.setAttribute('size', 20);
     newField2.setAttribute('placeholder', 'Hints');
 
