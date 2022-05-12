@@ -342,10 +342,12 @@
 
   less_fields.onclick = function () {
     var input_tags = scenarios.getElementsByTagName('input');
+    var br_tags = scenarios.getElementsByTagName('br');
     if (input_tags.length > 3) {
       scenarios.removeChild(input_tags[(input_tags.length) - 1]);
       scenarios.removeChild(input_tags[(input_tags.length) - 1]);
       scenarios.removeChild(input_tags[(input_tags.length) - 1]);
+      scenarios.removeChild(br_tags[(br_tags.length) - 1]);
     }
   }
 
