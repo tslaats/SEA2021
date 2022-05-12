@@ -10,7 +10,7 @@
   <style>
     body {
       font-family: "Lato", sans-serif;
-      margin: 8px 6px 8px 6px;
+      margin: 8px 6px 52px 6px;
       background-color: #e0e2e4;
       overflow-y: scroll;
     }
@@ -168,9 +168,9 @@
 
   <main>
     <article class="browser">
-      <h2>What is the question for the exercise?!</h2>
+      <h2>What is the description for the exercise?!</h2>
 
-      <input type="text" id="question" name="question" placeholder="Question">
+      <input type="text" id="question" name="question" size="65" placeholder="Description">
     </article>
 
     
@@ -182,6 +182,7 @@
           <input type="text" name="sym[]" size="20" value="" placeholder="Symbol">
 
           <input type="text" name="act[]" size="20" placeholder="Activity">
+
         </div>
         <div class="controls">
           <a href="#" id="add_more_fields">Add More</a>
@@ -192,12 +193,12 @@
     </article>
 
     <article class="browser">
-      <h2>Add required and prohibited scenarios for the exercise!</h2>
+      <h2>Add allowed and forbidden scenarios for the exercise!</h2>
       <form class="form-inline">
         <div id="scenarios">
           <input type="text" name="dcr[]" size="20" placeholder="Scenario">
 
-          <input type="text" name="req[]" size="20" placeholder="Required/prohibited">
+          <input type="text" name="req[]" size="20" placeholder="Allowed/Forbidden">
 
           <input type="text" name="hints[]"  size="20" placeholder="Hints">
 
@@ -215,7 +216,7 @@
 
 
   <div class="footer">
-    <p>This is a open source learning tool for learning about DCR-graphs!</p>
+    <p>This is an open source learning tool for learning about DCR-graphs!</p>
   </div>
 
   <div id="help-create" class="overlay">
@@ -233,8 +234,8 @@
           symbol to refer to the activity "get up in the morning". You can add more 
           symbols by clicking on "Add More". </p>
         <p>At the bottom, you should fill out the conditions that a correct answer must
-          fulfil. Select "Required" for scenarios that must be allowed in a correct answer. 
-          Select "Prohibited" if the scenario is NOT allowed in a correct answer. 
+          fulfil. Select "Allowed" for scenarios that must be allowed in a correct answer. 
+          Select "Forbidden" if the scenario is NOT allowed in a correct answer. 
           A single scenario may consist of one or more activities, separated by commas. For 
           example, the scenario "A,B,B" means you do activity A once then activity B twice. 
           If you want, you can add hints to show to the students if they get 
@@ -283,18 +284,22 @@
     newField1.setAttribute('placeholder', 'Activity');
 
     var br = document.createElement("br");
+    var ws = document.createTextNode(' ');
 
     activity.appendChild(br);
     activity.appendChild(newField);
+    activity.appendChild(ws);
     activity.appendChild(newField1);
 
   }
 
   remove_fields.onclick = function () {
     var input_tags = activity.getElementsByTagName('input');
+    var br_tags = activity.getElementsByTagName('br');
     if (input_tags.length > 2) {
       activity.removeChild(input_tags[(input_tags.length) - 1]);
       activity.removeChild(input_tags[(input_tags.length) - 1]);
+      activity.removeChild(br_tags[(br_tags.length) - 1]);
     }
   }
 
@@ -308,13 +313,13 @@
     newField.setAttribute('type', 'text');
     newField.setAttribute('name', 'dcr[]');
     newField.setAttribute('size', 20);
-    newField.setAttribute('placeholder', 'DCR');
+    newField.setAttribute('placeholder', 'Scenario');
 
     var newField1 = document.createElement('input');
     newField1.setAttribute('type', 'text');
     newField1.setAttribute('name', 'req[]');
     newField1.setAttribute('size', 20);
-    newField1.setAttribute('placeholder', 'Required/prohibited');
+    newField1.setAttribute('placeholder', 'Allowed/Forbidden');
 
     var newField2 = document.createElement('input');
     newField2.setAttribute('type', 'text');
@@ -323,10 +328,14 @@
     newField2.setAttribute('placeholder', 'Hints');
 
     var br = document.createElement("br");
+    var ws1 = document.createTextNode(' ');
+    var ws2 = document.createTextNode(' ');
 
     scenarios.appendChild(br);
     scenarios.appendChild(newField);
+    scenarios.appendChild(ws1);
     scenarios.appendChild(newField1);
+    scenarios.appendChild(ws2);
     scenarios.appendChild(newField2);
 
   }
@@ -337,7 +346,6 @@
       scenarios.removeChild(input_tags[(input_tags.length) - 1]);
       scenarios.removeChild(input_tags[(input_tags.length) - 1]);
       scenarios.removeChild(input_tags[(input_tags.length) - 1]);
-
     }
   }
 

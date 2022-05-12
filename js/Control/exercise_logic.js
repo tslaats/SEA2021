@@ -2,6 +2,7 @@
 import Exercise  from '../Entity/exercise.js';
 import Training_Set from '../Entity/training_set.js';
 
+
 var exercise_set = new Training_Set();  //should be global
 
 /*
